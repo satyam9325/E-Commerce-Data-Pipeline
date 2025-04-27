@@ -17,7 +17,7 @@ phases:
   post_build:
     commands:
       - echo "Uploading to s3...."
-      - aws s3 cp deployment_package.zip s3://ecomm-lambda-builds-zip
+      - aws s3 cp deployment_package.zip s3://ecomm-lambda-builds-zip/
       - echo "Updating Lambda function via s3...."
       - aws lambda update-function-code --function-name ecom-data-pipeline --s3-bucket ecomm-lambda-builds-zip --s3-key deployment_package.zip
       - echo "Deployment completed!!!"
