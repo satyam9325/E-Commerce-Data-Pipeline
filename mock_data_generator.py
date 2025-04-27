@@ -57,7 +57,7 @@ def generate_transaction(current_date):
 def generate_transactions(no_of_transactions, current_date):
     transactions=[]
     for i in range(no_of_transactions):
-        transactions= transactions.generate_transaction(current_date)
+        transactions= transactions.append(generate_transaction(current_date))
     return transactions
 
 def write_to_csv(data, filename):
