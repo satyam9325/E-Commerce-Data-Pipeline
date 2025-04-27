@@ -3,7 +3,9 @@ import string
 import csv
 import random
 import pandas
+from datetime import date, timedelta
 
+current_date = date.today()
 transaction_per_day=10 
 # Define customer and product IDs (replace with your actual data)
 customer_ids = ["CUST00001", "CUST00002", "CUST00003", "CUST00004", "CUST00005"]
@@ -35,13 +37,13 @@ def get_product_price(product_id):
     
 
 def generate_transaction(current_date):
-    transaction_id= 'TXN'+''.join(random.choices(string.digits, k=8)),
-    customer_id= random.choice(customer_ids),
-    product_id= random.choice(product_ids),
-    quantity= random.randint(1, 5),
-    price= get_product_price(product_id),
-    transaction_date= str(current_date),
-    payment_type= random.choice(payment_types),
+    transaction_id= "TXN"+"".join(random.choices(string.digits, k=8))
+    customer_id= random.choice(customer_ids)
+    product_id= random.choice(product_ids)
+    quantity= random.randint(1, 5)
+    price= get_product_price(product_id)
+    transaction_date= str(current_date)
+    payment_type= random.choice(payment_types)
     status= "Completed"
     return {
         "transaction_id":  transaction_id,
@@ -56,8 +58,8 @@ def generate_transaction(current_date):
     
 def generate_transactions(no_of_transactions, current_date):
     transactions=[]
-    for i in range(no_of_transactions):
-        transactions= transactions.append(generate_transaction(current_date))
+    for _ in range(no_of_transactions):
+        transactions.append(generate_transaction(current_date))
     return transactions
 
 def write_to_csv(data, filename):
@@ -69,7 +71,5 @@ def write_to_csv(data, filename):
         
 def genearate_data(current_date):
     transactions = generate_transactions(transaction_per_day,current_date)
-    write_to_csv(transactions,f".tmp/transactions_{str(current_date)}.csv")
+    write_to_csv(transactions,f"/tmp/transactions_{str(current_date)}.csv")
     print(f"Generated mock transaction data transactions_{str(current_date)}.csv and saved in csv files")
-    
-        

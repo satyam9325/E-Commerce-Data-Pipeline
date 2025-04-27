@@ -1,12 +1,11 @@
 import json
-from datetime import *
+from datetime import date, timedelta
 import boto3
 from mock_data_generator import genearate_data
 from upload_to_s3 import upload_to_s3
 
-start_date = date(2025,4,25)
 end_date = date.today()
-
+start_date = end_date - timedelta(days=4)
 
 
 def lambda_handler(event,context):

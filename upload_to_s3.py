@@ -7,7 +7,7 @@ current_date = date.today()
 def upload_to_s3(filename, current_date):
     year = current_date.year
     month = current_date.month 
-    date = current_date.date  
+    date = current_date.day
     filepath= f"transactions/year={year}/month={month}/date={date}/{filename}"
     s3_client.upload(f'/tmp/{filename}',filepath )
     print(f"File uploaded to S3 Bucket {bucket_name}/{filepath}")
